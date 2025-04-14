@@ -6,20 +6,11 @@ import { CommonModule } from '@angular/common'; // ✅ Қосамыз!
   selector: 'app-admin',
   standalone: true,
   imports: [CommonModule], // ✅ Қостық
-  template: `
-    <h2> беті</h2>
-  `,
+  template: `<h2> беті</h2>`,
 })
 export class AdminComponent {
   data: any;
 
   constructor(private http: HttpClient) {}
 
-  getData() {
-    // Code...
-  }
-
-  logout() {
-    // Code...
-  }
 }

@@ -4,32 +4,22 @@ import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private baseUrl = 'http://localhost:3000';
+  private api = 'http://localhost:3000';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient) {}
 
-  register(user: any) {
-    return this.http.post(`${this.baseUrl}/register`, user);
+  login(users: any) {
+    return this.http.post<any>(`${this.api}/login`, users);
   }
-
-  login(credentials: any) {
-    return this.http.post<any>(`${this.baseUrl}/login`, credentials);
-  }
-
   saveToken(token: string) {
     localStorage.setItem('token', token);
   }
-
-  getToken() {
+  getToken(){
     return localStorage.getItem('token');
   }
-
-  isLoggedIn() {
+  isLoggedIn(){
     return !!this.getToken();
   }
+ 
 
-  logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
-  }
 }
