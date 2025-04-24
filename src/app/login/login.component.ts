@@ -17,7 +17,9 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   login() {
-    this.authService.login({username: this.username, password: this.password}).subscribe({
+    console.log('LOGIN:', this.username, this.password);
+    debugger;
+    this.authService.login({username: this.username, password: 'bug'}).subscribe({
       next: (res) => {
         this.authService.saveToken(res.token);
         this.router.navigate(['/admin'])

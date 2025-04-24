@@ -8,8 +8,10 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(users: any) {
-    return this.http.post<any>(`${this.api}/login`, users);
+  login(users: any){
+    // console.log('Login user:', users); 
+    // debugger; 
+    return  this.http.post<any>(`${this.api}/login`, users); 
   }
   saveToken(token: string) {
     localStorage.setItem('token', token);
