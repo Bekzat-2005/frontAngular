@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { response } from 'express';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -21,25 +22,25 @@ describe('LoginComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
     authService = TestBed.inject(AuthService);
     fixture.detectChanges();
+    component = fixture.componentInstance;
     httpClient = TestBed.inject(HttpClient);
   });
 
-  it("Login create component", () => {
-    expect(component).toBeTruthy();
+ it('login component have?', () => {
+  expect(component).toBeTruthy();
+ })
+
+ it("login post method,url ", () => {
+  const userData = {username: 'test', password: '123456'}
+  const httpSpy = spyOn(httpClient, 'post').and.returnValue(of({token: 'token'}))
+
+  authService.login(userData).subscribe(response => {
+    expect(response.token).toBe('token')
   })
 
-  it('login() дұрыс POST сұранысын жібереді', () => {
-    const userData = { username: 'test', password: '1234' };
-    const httpSpy = spyOn(httpClient, 'post').and.returnValue(of({ token: 'mock-token' }));
+  expect(httpSpy).toHaveBeenCalledWith(`${authService.api}/login`, userData);
+ })
   
-    authService.login(userData).subscribe(response => {
-      expect(response.token).toBe('mock-token');
-    });
-  
-    expect(httpSpy).toHaveBeenCalledWith(`${authService.api}/login`, userData);
-  });
-
 });

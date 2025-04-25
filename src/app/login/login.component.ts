@@ -17,15 +17,16 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   login() {
-    // console.log('LOGIN:', this.username, this.password);
-    // debugger;
-    this.authService.login({username: this.username, password: this.password}).subscribe({
+    const user = {
+      username: this.username,
+      password: this.password
+    };
+    
+    this.authService.login(user).subscribe({
       next: (res) => {
         this.authService.saveToken(res.token);
         this.router.navigate(['/admin'])
       }
     })
   }
-
-
  }
