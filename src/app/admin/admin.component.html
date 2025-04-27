@@ -1,0 +1,40 @@
+<h2>Қолданушылар тізімі</h2>
+
+<!-- Жаңа қолданушы қосу формасы -->
+<form (ngSubmit)="createUser()" *ngIf="!editingUser">
+  <input [(ngModel)]="newUser.username" name="username" placeholder="Username" required>
+  <input [(ngModel)]="newUser.password" name="password" placeholder="Password" required>
+  <input [(ngModel)]="newUser.role" name="role" placeholder="Role" required>
+  <button type="submit">Қосу</button>
+</form>
+
+<!-- Қолданушыны жаңарту формасы -->
+<form *ngIf="editingUser" (ngSubmit)="saveUpdate()">
+  <input [(ngModel)]="editingUser.username" name="editUsername" placeholder="Username" required>
+  <input [(ngModel)]="editingUser.role" name="editRole" placeholder="Role" required>
+  <button type="submit">Сақтау</button>
+  <button type="button" (click)="cancelEdit()">Болдырмау</button>
+</form>
+
+<!-- Қолданушылар тізімі -->
+<table style="border: 1px solid black; border-collapse: collapse; margin-top: 20px;">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Role</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user._id }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.role }}</td>
+      <td>
+        <button (click)="startEdit(user)">Update</button>
+        <button (click)="deleteUser(user._id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
