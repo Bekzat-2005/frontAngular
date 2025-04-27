@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private api = 'http://localhost:3000/users'; // 🔥
+  // private api = 'http://localhost:3000/users'; // 🔥
+
+  public api = 'https://backexpress-3mnu.onrender.com';
 
   constructor(private http: HttpClient) {}
 
