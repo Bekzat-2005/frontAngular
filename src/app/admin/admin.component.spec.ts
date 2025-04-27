@@ -12,7 +12,7 @@ describe('AdminComponent', () => {
 
   beforeEach(async () => {
     const spy = jasmine.createSpyObj('UserService', ['getUsers', 'createUser', 'updateUser', 'deleteUser']);
-    // ❗ getUsers шақырғанда бос массив қайтаратын қылып береміз
+   
     spy.getUsers.and.returnValue(of([]));  
 
     await TestBed.configureTestingModule({
