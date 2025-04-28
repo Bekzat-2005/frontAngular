@@ -28,19 +28,20 @@ describe('LoginComponent', () => {
     httpClient = TestBed.inject(HttpClient);
   });
 
- it('login component have?', () => {
-  expect(component).toBeTruthy();
- })
-
- it("login post method,url ", () => {
-  const userData = {username: 'test', password: '123456'}
-  const httpSpy = spyOn(httpClient, 'post').and.returnValue(of({token: 'token'}))
-
-  authService.login(userData).subscribe(response => {
-    expect(response.token).toBe('token')
+  it("login have component?", () => {
+    expect(component).toBeTruthy();
   })
 
-  expect(httpSpy).toHaveBeenCalledWith(`${authService.api}/login`, userData);
- })
+  it("Login() post method and url", () => {
+    const userData = {username: 'test', password: '123456'}
+    const httpSpy = spyOn(httpClient, 'post').and.returnValue(of({token: 'token'}))
+
+    authService.login(userData).subscribe(responce => {
+      expect(responce.token).toBe('token')
+    })
+
+    expect(httpSpy).toHaveBeenCalledWith(`${authService.api}/login`, userData);
+
+  })
   
 });

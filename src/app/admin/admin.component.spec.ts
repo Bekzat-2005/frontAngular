@@ -4,6 +4,7 @@ import { UserService } from '../user.service';
 import { of } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
 
 describe('AdminComponent', () => {
   let component: AdminComponent;
@@ -24,26 +25,27 @@ describe('AdminComponent', () => {
     component = fixture.componentInstance;
     userServiceSpy = TestBed.inject(UserService) as jasmine.SpyObj<UserService>;
 
-    fixture.detectChanges(); // ❗ Осы жерде getUsers() шақырылады
+    fixture.detectChanges();
   });
 
-  it('should create AdminComponent', () => {
+  it("Admin componen have?", () => {
     expect(component).toBeTruthy();
-  });
+  })
 
-  it('should load users on getUsers', () => {
-    const mockUsers = [{ _id: '1', username: 'testuser', role: 'user' }];
+  it('get', () => {
+    const mockUsers = [{_id: '1', username: 'testuser', role: 'user'}];
     userServiceSpy.getUsers.and.returnValue(of(mockUsers));
 
     component.getUsers();
 
     expect(userServiceSpy.getUsers).toHaveBeenCalled();
     expect(component.users).toEqual(mockUsers);
-  });
+  })
 
-  it('should create a new user', () => {
-    const newUser = { username: 'newuser', password: '123456', role: 'user' };
-    component.newUser = { ...newUser };
+ 
+  it('create', () => {
+    const newUser = {username: 'newUser', password: '123456', role: 'user'};
+    component.newUser = { ...newUser};
 
     userServiceSpy.createUser.and.returnValue(of(newUser));
     userServiceSpy.getUsers.and.returnValue(of([]));
@@ -53,8 +55,8 @@ describe('AdminComponent', () => {
     expect(userServiceSpy.createUser).toHaveBeenCalledWith(newUser);
   });
 
-  it('should delete a user', () => {
-    spyOn(window, 'confirm').and.returnValue(true); // confirm always true
+  it('delete', () => {
+    spyOn(window, 'confirm').and.returnValue(true);
     userServiceSpy.deleteUser.and.returnValue(of({}));
     userServiceSpy.getUsers.and.returnValue(of([]));
 
@@ -63,9 +65,9 @@ describe('AdminComponent', () => {
     expect(userServiceSpy.deleteUser).toHaveBeenCalledWith('1');
   });
 
-  it('should update a user', () => {
-    const editingUser = { _id: '1', username: 'edited', role: 'admin' };
-    component.editingUser = { ...editingUser };
+  it('update', () => {
+    const editingUser = { _id: '1', username: 'edited', role: 'admin'};
+    component.editingUser = { ...editingUser};
 
     userServiceSpy.updateUser.and.returnValue(of({}));
     userServiceSpy.getUsers.and.returnValue(of([]));
@@ -77,4 +79,5 @@ describe('AdminComponent', () => {
       role: 'admin'
     });
   });
+
 });
