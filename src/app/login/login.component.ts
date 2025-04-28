@@ -21,7 +21,9 @@ export class LoginComponent {
       username: this.username,
       password: this.password
     };
-    
+
+    // debugger;
+  
     this.authService.login(user).subscribe({
       next: (res) => {
         this.authService.saveToken(res.token);

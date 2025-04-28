@@ -28,7 +28,7 @@ describe('AdminComponent', () => {
     fixture.detectChanges();
   });
 
-  it("Admin componen have?", () => {
+  it("Admin component", () => {
     expect(component).toBeTruthy();
   })
 

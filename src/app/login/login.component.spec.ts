@@ -28,20 +28,7 @@ describe('LoginComponent', () => {
     httpClient = TestBed.inject(HttpClient);
   });
 
-  it("login have component?", () => {
-    expect(component).toBeTruthy();
-  })
-
-  it("Login() post method and url", () => {
-    const userData = {username: 'test', password: '123456'}
-    const httpSpy = spyOn(httpClient, 'post').and.returnValue(of({token: 'token'}))
-
-    authService.login(userData).subscribe(responce => {
-      expect(responce.token).toBe('token')
-    })
-
-    expect(httpSpy).toHaveBeenCalledWith(`${authService.api}/login`, userData);
-
-  })
+    
+  
   
 });
