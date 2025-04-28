@@ -3,23 +3,28 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  public api = 'https://backexpress-3mnu.onrender.com/users'; // МІНЕ ОСЫ!!!
+  // private api = 'http://localhost:3000/users'; // 🔥
+
+  // public api = 'https://backexpress-3mnu.onrender.com';
+  public api = 'https://backexpress-3mnu.onrender.com/users'
+
+
 
   constructor(private http: HttpClient) {}
 
   getUsers() {
-    return this.http.get<any[]>(this.api); // /users
+    return this.http.get<any[]>(this.api);
   }
 
   createUser(user: any) {
-    return this.http.post<any>(this.api, user); // /users
+    return this.http.post<any>(this.api, user);
   }
 
   updateUser(id: string, user: any) {
-    return this.http.put<any>(`${this.api}/${id}`, user); // /users/:id
+    return this.http.put<any>(`${this.api}/${id}`, user);
   }
 
   deleteUser(id: string) {
-    return this.http.delete<any>(`${this.api}/${id}`); // /users/:id
+    return this.http.delete<any>(`${this.api}/${id}`);
   }
 }

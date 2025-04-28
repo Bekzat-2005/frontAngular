@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   // public api = 'http://localhost:3000';
-  public api = 'https://backexpress-3mnu.onrender.com'; // Міне осылай!
+  public api = 'https://backexpress-3mnu.onrender.com'
+
 
 
   constructor(private http: HttpClient) {}
